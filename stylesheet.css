@@ -10,6 +10,11 @@ p:hover {
     color: brown;
 }
 
+a:hover {
+	cursor: pointer;
+    color: brown;
+}
+
 img {
     display: block;
     position: relative;
@@ -29,7 +34,7 @@ h1{
 
 h3{
 	text-align: center;
-	font-family: cursive;
+	font-family: italic;
 }
 
 .cid{
@@ -39,4 +44,5 @@ h3{
 .content {
     position: relative;
     width: 100%;
+    display: none;
 }
