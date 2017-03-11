@@ -1,0 +1,39 @@
+* {
+    font-family: Arial;
+    font-size: 1em;
+}
+
+#content {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+
+p {
+    cursor: pointer;
+    width: 30%;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+}
+
+p:hover {
+    color: brown;
+}
+
+img {
+    display: block;
+    position: relative;
+   	width: 50%;
+    left: 25%;
+}
+
+body, html{
+	height:100%;
+}
+
+h1{
+	text-align: center;
+	font-family: Arial;
+	font-size: 2em;
+}
