@@ -1,48 +1,34 @@
-p {
-    cursor: pointer;
-    width: 30%;
+*{
     text-align: center;
-    position: relative;
-    left: 35%;
+    font-family:  'Trocchi', serif;
 }
-
-p:hover {
-    color: brown;
-}
-
-a:hover {
-	cursor: pointer;
-    color: brown;
-}
-
 img {
     display: block;
     position: relative;
-   	width: 50%;
+    width: 50%;
     left: 25%;
 }
 
-body, html{
-	height:100%;
+body,
+html {
+    background: #fff4a3;
+    height: 100%;
 }
 
-h1{
-	text-align: center;
-	font-family: Arial;
-	font-size: 2em;
+h1 {
+    font-size: 2em;
 }
 
-h3{
-	text-align: center;
-	font-family: italic;
-}
-
-.cid{
-	display: none;
-}
-
-.content {
+#count {
+    font-size: 1em;
     position: relative;
-    width: 100%;
+    top: 1em;
+}
+
+#cats {
     display: none;
+}
+
+li{
+    text-align: left;
 }
