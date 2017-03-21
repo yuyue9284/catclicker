@@ -10,12 +10,12 @@ $(function() {
                 }, {
                     cid: 1,
                     name: "Cat2",
-                    count: 1,
+                    count: 0,
                     src: "https://lh3.ggpht.com/kixazxoJ2ufl3ACj2I85Xsy-Rfog97BM75ZiLaX02KgeYramAEqlEHqPC3rKqdQj4C1VFnXXryadFs1J9A=s0#w=640&h=496"
                 }, {
                     cid: 2,
                     name: "Cat3",
-                    count: 2,
+                    count: 0,
                     src: "https://lh5.ggpht.com/LfjkdmOKkGLvCt-VuRlWGjAjXqTBrPjRsokTNKBtCh8IFPRetGaXIpTQGE2e7ZCUaG2azKNkz38KkbM_emA=s0#w=640&h=454"
                 }]
                 localStorage.cats = JSON.stringify(cats);
@@ -36,10 +36,26 @@ $(function() {
 
         getcatlist: function() {
             return JSON.parse(localStorage.cats);
+        },
+
+        update_cat: function(cid, name, count, src) {
+            var catlist = this.getcatlist();
+            catlist[cid].name = name;
+            catlist[cid].count = Number(count);
+            catlist[cid].src = src;
+            localStorage.cats = JSON.stringify(catlist);
+            return catlist[cid];
         }
     };
 
     var view = {
+        init: function(catlist) {
+            this.renderlist(catlist);
+            $('#admin_button').hide();
+            $("#admin_button").on('click', function() {
+                $('#admin_form').show();
+            })
+        },
         renderlist: function(catlist) {
             catlist.forEach(function(cat) {
                 $("#catlist").append("<li cid = \"" + cat.cid + "\">" + cat.name + "</li>")
@@ -51,15 +67,26 @@ $(function() {
             $('#count').html(cat.count);
             $("#img").attr({ "src": cat.src, "cid": cat.cid });
             $(".cats").css("display", "block");
+            $("#admin_button").show();
+        },
+
+        hide_admin: function() {
+            $('#admin_form').hide();
+            $('#admin_form')[0].reset();
         }
+
+
     };
 
     var controller = {
         init: function() {
             model.init();
-            view.renderlist(model.getcatlist());
+            view.init(model.getcatlist());
             $("li").click(this.showcats);
             $("img").click(this.increase);
+            $("#cancel").on('click', view.hide_admin);
+            $('#admin_form').submit(controller.update)
+
         },
 
         increase: function() {
@@ -72,6 +99,23 @@ $(function() {
             var cid = $(this).attr("cid");
             var cat = model.getcat(Number(cid));
             view.rendercat(cat);
+        },
+
+        update: function(event) {
+            event.preventDefault();
+            var lst = $(this).serializeArray();
+            console.log(lst[0]);
+            view.hide_admin();
+            var cid = Number($('img').attr('cid'));
+            var name = lst[0].value;
+            var count = Number(lst[1].value);
+            var src = lst[2].value;
+            var new_cat = model.update_cat(cid, name, count, src);
+            console.log(name, count, src);
+            // update cat name in list
+            $('li[cid='+cid+']').html(new_cat.name);
+            // render cat
+            view.rendercat(new_cat);
         }
     };
 

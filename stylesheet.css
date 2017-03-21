@@ -1,7 +1,8 @@
-*{
+* {
     text-align: center;
-    font-family:  'Trocchi', serif;
+    font-family: 'Trocchi', serif;
 }
+
 img {
     display: block;
     position: relative;
@@ -29,6 +30,18 @@ h1 {
     display: none;
 }
 
-li{
+li {
     text-align: left;
+}
+
+#admin_button {
+    display: none;
+    position: relative;
+    top: 20pt;
+}
+
+#admin_form {
+    position: relative;
+    top: 30pt;
+    display: none;
 }
